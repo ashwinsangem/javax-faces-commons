@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans;
+package tech.lapsa.javax.faces.beans.temporal;
 
 import java.time.Instant;
 import java.time.LocalDate;
