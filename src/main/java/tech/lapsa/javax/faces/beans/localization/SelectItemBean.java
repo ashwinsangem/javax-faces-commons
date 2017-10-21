@@ -1,7 +1,7 @@
 package tech.lapsa.javax.faces.beans.localization;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import tech.lapsa.java.commons.function.MyCollectors;
+import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.commons.function.MyOptionals;
 import tech.lapsa.java.commons.localization.Localized;
 import tech.lapsa.javax.faces.utility.Facess;
@@ -18,65 +19,83 @@ import tech.lapsa.javax.faces.utility.Facess;
 @ApplicationScoped
 public class SelectItemBean {
 
-    @Named
-    private LocalizedBean localized;
+    private static class FromType<T> {
+	private final Function<T, Optional<Stream<Localized>>> beginner;
 
-    public SelectItem regular(Localized entity) {
+	private FromType(Function<T, Optional<Stream<Localized>>> beginner) {
+	    this.beginner = MyObjects.requireNonNull(beginner, "beginner");
+	}
+
+	public List<SelectItem> regular(T entities) {
+	    return beginner.apply(entities) //
+		    .orElseGet(Stream::empty) //
+		    .map(SelectItemBean::regular) //
+		    .collect(MyCollectors.unmodifiableList());
+	}
+
+	public List<SelectItem> full(T entities) {
+	    return beginner.apply(entities) //
+		    .orElseGet(Stream::empty) //
+		    .map(SelectItemBean::full) //
+		    .collect(MyCollectors.unmodifiableList());
+	}
+
+	public List<SelectItem> few(T entities) {
+	    return beginner.apply(entities) //
+		    .orElseGet(Stream::empty) //
+		    .map(SelectItemBean::few) //
+		    .collect(MyCollectors.unmodifiableList());
+	}
+    }
+
+    public static class FromArray extends FromType<Localized[]> {
+	public FromArray() {
+	    super(x -> MyOptionals.streamOf(x));
+	}
+    }
+
+    public static class FromList extends FromType<List<Localized>> {
+	public FromList() {
+	    super(x -> MyOptionals.streamOf(x));
+	}
+    }
+
+    private FromArray fromArray = new FromArray();
+    private FromList fromList = new FromList();
+
+    public FromArray getArray() {
+	return fromArray;
+    }
+
+    public FromArray getFromArray() {
+	return fromArray;
+    }
+
+    public FromList getList() {
+	return fromList;
+    }
+
+    public FromList getFromList() {
+	return fromList;
+    }
+
+    // PRIVATE
+
+    private static SelectItem regular(Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.regular(Facess.getLocale()))) //
 		.orElse(null);
     }
 
-    public SelectItem full(Localized entity) {
+    private static SelectItem full(Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.full(Facess.getLocale()))) //
 		.orElse(null);
     }
 
-    public SelectItem few(Localized entity) {
+    private static SelectItem few(Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.few(Facess.getLocale()))) //
 		.orElse(null);
     }
-
-    public List<SelectItem> regular(Localized[] entity) {
-	return from(entity, this::regular);
-    }
-
-    public List<SelectItem> selectItemFull(Localized[] entity) {
-	return from(entity, this::full);
-    }
-
-    public List<SelectItem> selectItemFew(Localized[] entity) {
-	return from(entity, this::few);
-    }
-
-    public List<SelectItem> regular(Collection<Localized> entity) {
-	return from(entity, this::regular);
-    }
-
-    public List<SelectItem> selectItemFull(Collection<Localized> entity) {
-	return from(entity, this::full);
-    }
-
-    public List<SelectItem> selectItemFew(Collection<Localized> entity) {
-	return from(entity, this::few);
-    }
-
-    // PRIVATE
-
-    private List<SelectItem> from(Localized[] entities, Function<Localized, SelectItem> funct) {
-	return MyOptionals.streamOf(entities) //
-		.orElseGet(Stream::empty) //
-		.map(funct) //
-		.collect(MyCollectors.unmodifiableList());
-    }
-
-    private List<SelectItem> from(Collection<Localized> entity, Function<Localized, SelectItem> funct) {
-	return MyOptionals.streamOf(entity) //
-		.orElseGet(Stream::empty) //
-		.map(funct) //
-		.collect(MyCollectors.unmodifiableList());
-    }
-
 }
