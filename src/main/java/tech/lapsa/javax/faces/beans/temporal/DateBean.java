@@ -12,6 +12,6 @@ import tech.lapsa.java.commons.time.MyTemporals;
 public class DateBean extends ATemporalBean<Date> {
 
     public DateBean() {
-	super(MyTemporals.getInstance().forDate());
+	super(MyTemporals.date());
     }
 }

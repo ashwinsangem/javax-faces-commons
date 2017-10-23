@@ -5,13 +5,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import tech.lapsa.java.commons.time.MyTemporals.TemporalUtil;
+import tech.lapsa.java.commons.time.MyTemporals.AFromTemporal;
 
 public abstract class ATemporalBean<T> {
 
-    private final TemporalUtil<T> util;
+    private final AFromTemporal<T> util;
 
-    protected ATemporalBean(TemporalUtil<T> util) {
+    protected ATemporalBean(AFromTemporal<T> util) {
 	this.util = util;
     }
 

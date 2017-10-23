@@ -12,6 +12,6 @@ import tech.lapsa.java.commons.time.MyTemporals;
 public class LocalDateTimeBean extends ATemporalBean<LocalDateTime> {
 
     public LocalDateTimeBean() {
-	super(MyTemporals.getInstance().forLocalDateTime());
+	super(MyTemporals.localDateTime());
     }
 }

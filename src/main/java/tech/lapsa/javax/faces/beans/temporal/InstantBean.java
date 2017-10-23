@@ -12,6 +12,6 @@ import tech.lapsa.java.commons.time.MyTemporals;
 public class InstantBean extends ATemporalBean<Instant> {
 
     public InstantBean() {
-	super(MyTemporals.getInstance().forInstance());
+	super(MyTemporals.instant());
     }
 }
