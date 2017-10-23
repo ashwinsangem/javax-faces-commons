@@ -60,8 +60,15 @@ public class SelectItemBean {
 	}
     }
 
+    public static class FromSingle extends FromType<Localized> {
+	public FromSingle() {
+	    super(x -> MyOptionals.of(x).map(Stream::of));
+	}
+    }
+
     private FromArray fromArray = new FromArray();
     private FromList fromList = new FromList();
+    private FromSingle fromSingle = new FromSingle();
 
     public FromArray getArray() {
 	return fromArray;
@@ -77,6 +84,14 @@ public class SelectItemBean {
 
     public FromList getFromList() {
 	return fromList;
+    }
+
+    public FromSingle getSingle() {
+	return fromSingle;
+    }
+
+    public FromSingle getFromSingle() {
+	return fromSingle;
     }
 
     // PRIVATE
