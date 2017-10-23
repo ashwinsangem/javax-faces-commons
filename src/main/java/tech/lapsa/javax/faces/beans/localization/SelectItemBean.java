@@ -20,28 +20,28 @@ import tech.lapsa.javax.faces.utility.Facess;
 public class SelectItemBean {
 
     private static class FromType<T> {
-	private final Function<T, Optional<Stream<Localized>>> beginner;
+	private final Function<T, Optional<Stream<Localized>>> starter;
 
-	private FromType(Function<T, Optional<Stream<Localized>>> beginner) {
-	    this.beginner = MyObjects.requireNonNull(beginner, "beginner");
+	private FromType(Function<T, Optional<Stream<Localized>>> starter) {
+	    this.starter = MyObjects.requireNonNull(starter, "starter");
 	}
 
 	public List<SelectItem> regular(T entities) {
-	    return beginner.apply(entities) //
+	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
 		    .map(SelectItemBean::regular) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
 
 	public List<SelectItem> full(T entities) {
-	    return beginner.apply(entities) //
+	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
 		    .map(SelectItemBean::full) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
 
 	public List<SelectItem> few(T entities) {
-	    return beginner.apply(entities) //
+	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
 		    .map(SelectItemBean::few) //
 		    .collect(MyCollectors.unmodifiableList());
