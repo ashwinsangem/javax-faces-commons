@@ -19,7 +19,7 @@ import tech.lapsa.javax.faces.utility.Facess;
 @ApplicationScoped
 public class SelectItemBean {
 
-    private static class FromType<T> {
+    public static abstract class FromType<T> {
 	private final Function<T, Optional<Stream<Localized>>> starter;
 
 	private FromType(Function<T, Optional<Stream<Localized>>> starter) {
