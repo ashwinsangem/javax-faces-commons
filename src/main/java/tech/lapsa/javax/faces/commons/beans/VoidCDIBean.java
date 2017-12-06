@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans.localization;
+package tech.lapsa.javax.faces.commons.beans;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 @Named("void")
 @Dependent
-public class VoidBean implements Serializable {
+public class VoidCDIBean implements Serializable {
     private static final long serialVersionUID = -1667664768981313908L;
 
     public String doVoid() {
