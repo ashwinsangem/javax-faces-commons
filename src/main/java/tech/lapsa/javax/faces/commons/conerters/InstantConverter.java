@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.conerters;
+package tech.lapsa.javax.faces.commons.conerters;
 
 import java.time.Instant;
 import java.time.format.DateTimeParseException;

@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans.localization;
+package tech.lapsa.javax.faces.commons.beans.localization;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +13,11 @@ import tech.lapsa.java.commons.function.MyCollectors;
 import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.commons.function.MyOptionals;
 import tech.lapsa.java.commons.localization.Localized;
-import tech.lapsa.javax.faces.utility.Facess;
+import tech.lapsa.javax.faces.commons.MyFaces;
 
 @Named("si")
 @ApplicationScoped
-public class SelectItemBean {
+public class SelectItemCDIBean {
 
     public static abstract class FromType<T> {
 	private final Function<T, Optional<Stream<Localized>>> starter;
@@ -29,21 +29,21 @@ public class SelectItemBean {
 	public List<SelectItem> regular(T entities) {
 	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
-		    .map(SelectItemBean::regular) //
+		    .map(SelectItemCDIBean::regular) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
 
 	public List<SelectItem> full(T entities) {
 	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
-		    .map(SelectItemBean::full) //
+		    .map(SelectItemCDIBean::full) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
 
 	public List<SelectItem> few(T entities) {
 	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
-		    .map(SelectItemBean::few) //
+		    .map(SelectItemCDIBean::few) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
     }
@@ -98,19 +98,19 @@ public class SelectItemBean {
 
     private static SelectItem regular(Localized entity) {
 	return MyOptionals.of(entity) //
-		.map(x -> new SelectItem(x, x.regular(Facess.getLocale()))) //
+		.map(x -> new SelectItem(x, x.regular(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 
     private static SelectItem full(Localized entity) {
 	return MyOptionals.of(entity) //
-		.map(x -> new SelectItem(x, x.full(Facess.getLocale()))) //
+		.map(x -> new SelectItem(x, x.full(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 
     private static SelectItem few(Localized entity) {
 	return MyOptionals.of(entity) //
-		.map(x -> new SelectItem(x, x.few(Facess.getLocale()))) //
+		.map(x -> new SelectItem(x, x.few(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 }

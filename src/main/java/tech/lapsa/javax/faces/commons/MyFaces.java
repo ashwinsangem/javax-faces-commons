@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.utility;
+package tech.lapsa.javax.faces.commons;
 
 import java.util.Locale;
 
@@ -7,8 +7,8 @@ import javax.faces.context.FacesContext;
 
 import tech.lapsa.java.commons.function.MyOptionals;
 
-public final class Facess {
-    private Facess() {
+public final class MyFaces {
+    private MyFaces() {
     }
 
     public static Locale getLocale() {

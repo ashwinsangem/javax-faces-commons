@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans.temporal;
+package tech.lapsa.javax.faces.commons.beans.temporal;
 
 import java.time.Instant;
 
@@ -9,9 +9,9 @@ import tech.lapsa.java.commons.time.MyTemporals;
 
 @Named("instant")
 @ApplicationScoped
-public class InstantBean extends ATemporalBean<Instant> {
+public class InstantCDIBean extends ATemporalCDIBean<Instant> {
 
-    public InstantBean() {
+    public InstantCDIBean() {
 	super(MyTemporals.instant());
     }
 }
