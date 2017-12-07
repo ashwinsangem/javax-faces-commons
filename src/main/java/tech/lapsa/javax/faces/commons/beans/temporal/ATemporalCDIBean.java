@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans.temporal;
+package tech.lapsa.javax.faces.commons.beans.temporal;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -7,11 +7,11 @@ import java.util.Date;
 
 import tech.lapsa.java.commons.time.MyTemporals.AFromTemporal;
 
-public abstract class ATemporalBean<T> {
+public abstract class ATemporalCDIBean<T> {
 
     private final AFromTemporal<T> util;
 
-    protected ATemporalBean(AFromTemporal<T> util) {
+    protected ATemporalCDIBean(AFromTemporal<T> util) {
 	this.util = util;
     }
 

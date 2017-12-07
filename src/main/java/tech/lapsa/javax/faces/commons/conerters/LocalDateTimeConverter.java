@@ -1,6 +1,6 @@
-package tech.lapsa.javax.faces.conerters;
+package tech.lapsa.javax.faces.commons.conerters;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import javax.faces.component.UIComponent;
@@ -11,15 +11,15 @@ import javax.faces.convert.FacesConverter;
 
 import tech.lapsa.java.commons.function.MyObjects;
 
-@FacesConverter(value = "localDateConverter", forClass = LocalDate.class)
-public class LocalDateConverter implements Converter {
+@FacesConverter(value = "localDateTimeConverter", forClass = LocalDateTime.class)
+public class LocalDateTimeConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
 	if (MyObjects.isNull(value))
 	    return null;
 	try {
-	    return LocalDate.parse(value);
+	    return LocalDateTime.parse(value);
 	} catch (DateTimeParseException e) {
 	    throw new ConverterException(e);
 	}
@@ -30,7 +30,7 @@ public class LocalDateConverter implements Converter {
 	if (MyObjects.isNull(value))
 	    return null;
 	try {
-	    return MyObjects.requireA(value, LocalDate.class, "value") //
+	    return MyObjects.requireA(value, LocalDateTime.class, "value") //
 		    .toString();
 	} catch (IllegalArgumentException e) {
 	    throw new ConverterException(e);

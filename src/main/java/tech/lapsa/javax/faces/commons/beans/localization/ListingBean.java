@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans.localization;
+package tech.lapsa.javax.faces.commons.beans.localization;
 
 import tech.lapsa.java.commons.localization.Localized;
 

@@ -1,4 +1,4 @@
-package tech.lapsa.javax.faces.beans.temporal;
+package tech.lapsa.javax.faces.commons.beans.temporal;
 
 import java.util.Date;
 
@@ -9,9 +9,9 @@ import tech.lapsa.java.commons.time.MyTemporals;
 
 @Named("date")
 @ApplicationScoped
-public class DateBean extends ATemporalBean<Date> {
+public class DateCDIBean extends ATemporalCDIBean<Date> {
 
-    public DateBean() {
+    public DateCDIBean() {
 	super(MyTemporals.date());
     }
 }
