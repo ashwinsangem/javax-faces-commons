@@ -11,19 +11,19 @@ import tech.lapsa.javax.faces.commons.MyFaces;
 @ApplicationScoped
 public class LocalizedCDIBean {
 
-    public String regular(Localized entity) {
+    public String regular(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> x.regular(MyFaces.getLocale())) //
 		.orElse(null);
     }
 
-    public String few(Localized entity) {
+    public String few(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> x.few(MyFaces.getLocale())) //
 		.orElse(null);
     }
 
-    public String full(Localized entity) {
+    public String full(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> x.full(MyFaces.getLocale())) //
 		.orElse(null);

@@ -20,12 +20,12 @@ public class VoidCDIBean implements Serializable {
     public void onVoid() {
     }
 
-    public void onVoidFacesEvent(FacesEvent event) {
+    public void onVoidFacesEvent(final FacesEvent event) {
     }
 
-    public void onVoidValueChangeEvent(ValueChangeEvent event) {
+    public void onVoidValueChangeEvent(final ValueChangeEvent event) {
     }
 
-    public void onVoidAjaxBehaviorEvent(AjaxBehaviorEvent event) {
+    public void onVoidAjaxBehaviorEvent(final AjaxBehaviorEvent event) {
     }
 }

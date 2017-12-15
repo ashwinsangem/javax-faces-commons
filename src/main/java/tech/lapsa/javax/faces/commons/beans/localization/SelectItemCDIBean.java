@@ -22,25 +22,25 @@ public class SelectItemCDIBean {
     public static abstract class FromType<T> {
 	private final Function<T, Optional<Stream<Localized>>> starter;
 
-	private FromType(Function<T, Optional<Stream<Localized>>> starter) {
+	private FromType(final Function<T, Optional<Stream<Localized>>> starter) {
 	    this.starter = MyObjects.requireNonNull(starter, "starter");
 	}
 
-	public List<SelectItem> regular(T entities) {
+	public List<SelectItem> regular(final T entities) {
 	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
 		    .map(SelectItemCDIBean::regular) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
 
-	public List<SelectItem> full(T entities) {
+	public List<SelectItem> full(final T entities) {
 	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
 		    .map(SelectItemCDIBean::full) //
 		    .collect(MyCollectors.unmodifiableList());
 	}
 
-	public List<SelectItem> few(T entities) {
+	public List<SelectItem> few(final T entities) {
 	    return starter.apply(entities) //
 		    .orElseGet(Stream::empty) //
 		    .map(SelectItemCDIBean::few) //
@@ -66,9 +66,9 @@ public class SelectItemCDIBean {
 	}
     }
 
-    private FromArray fromArray = new FromArray();
-    private FromList fromList = new FromList();
-    private FromSingle fromSingle = new FromSingle();
+    private final FromArray fromArray = new FromArray();
+    private final FromList fromList = new FromList();
+    private final FromSingle fromSingle = new FromSingle();
 
     public FromArray getArray() {
 	return fromArray;
@@ -96,19 +96,19 @@ public class SelectItemCDIBean {
 
     // PRIVATE
 
-    private static SelectItem regular(Localized entity) {
+    private static SelectItem regular(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.regular(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 
-    private static SelectItem full(Localized entity) {
+    private static SelectItem full(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.full(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 
-    private static SelectItem few(Localized entity) {
+    private static SelectItem few(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.few(MyFaces.getLocale()))) //
 		.orElse(null);

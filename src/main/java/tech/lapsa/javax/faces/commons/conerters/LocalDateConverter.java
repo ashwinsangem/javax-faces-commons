@@ -15,24 +15,24 @@ import tech.lapsa.java.commons.function.MyObjects;
 public class LocalDateConverter implements Converter {
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public Object getAsObject(final FacesContext context, final UIComponent component, final String value) {
 	if (MyObjects.isNull(value))
 	    return null;
 	try {
 	    return LocalDate.parse(value);
-	} catch (DateTimeParseException e) {
+	} catch (final DateTimeParseException e) {
 	    throw new ConverterException(e);
 	}
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
+    public String getAsString(final FacesContext context, final UIComponent component, final Object value) {
 	if (MyObjects.isNull(value))
 	    return null;
 	try {
 	    return MyObjects.requireA(value, LocalDate.class, "value") //
 		    .toString();
-	} catch (IllegalArgumentException e) {
+	} catch (final IllegalArgumentException e) {
 	    throw new ConverterException(e);
 	}
     }

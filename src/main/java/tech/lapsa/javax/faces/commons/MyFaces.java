@@ -12,7 +12,7 @@ public final class MyFaces {
     }
 
     public static Locale getLocale() {
-	Locale locale = MyOptionals.of(FacesContext.getCurrentInstance())
+	final Locale locale = MyOptionals.of(FacesContext.getCurrentInstance())
 		.map(FacesContext::getViewRoot)
 		.map(UIViewRoot::getLocale)
 		.orElseThrow(() -> new IllegalStateException("Not in JSF context"));
