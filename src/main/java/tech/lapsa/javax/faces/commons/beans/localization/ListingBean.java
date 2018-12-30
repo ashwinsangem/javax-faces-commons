@@ -10,4 +10,6 @@ public interface ListingBean<T extends Localized> {
 
     T[] getNonSelectable();
 
+    T byName(String name);
+
 }

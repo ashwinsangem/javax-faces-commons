@@ -96,19 +96,19 @@ public class SelectItemCDIBean {
 
     // PRIVATE
 
-    private static SelectItem regular(final Localized entity) {
+    public static SelectItem regular(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.regular(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 
-    private static SelectItem full(final Localized entity) {
+    public static SelectItem full(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.full(MyFaces.getLocale()))) //
 		.orElse(null);
     }
 
-    private static SelectItem few(final Localized entity) {
+    public static SelectItem few(final Localized entity) {
 	return MyOptionals.of(entity) //
 		.map(x -> new SelectItem(x, x.few(MyFaces.getLocale()))) //
 		.orElse(null);
