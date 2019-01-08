@@ -11,7 +11,7 @@ import javax.faces.convert.FacesConverter;
 
 import tech.lapsa.java.commons.function.MyObjects;
 
-@FacesConverter(value = "instantConverter", forClass = Instant.class)
+@FacesConverter(forClass = Instant.class)
 public class InstantConverter implements Converter {
 
     @Override
