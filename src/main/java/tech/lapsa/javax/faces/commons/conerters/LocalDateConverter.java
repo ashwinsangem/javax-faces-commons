@@ -11,7 +11,7 @@ import javax.faces.convert.FacesConverter;
 
 import tech.lapsa.java.commons.function.MyObjects;
 
-@FacesConverter(value = "localDateConverter", forClass = LocalDate.class)
+@FacesConverter(forClass = LocalDate.class)
 public class LocalDateConverter implements Converter {
 
     @Override

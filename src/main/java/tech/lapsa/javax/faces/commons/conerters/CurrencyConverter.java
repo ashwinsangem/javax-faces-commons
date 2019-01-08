@@ -8,7 +8,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value = "currencyConverter", forClass = Currency.class)
+@FacesConverter(forClass = Currency.class)
 public class CurrencyConverter implements Converter {
 
     @Override
@@ -19,7 +19,7 @@ public class CurrencyConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object currency) {
 	try {
-	    return currency != null ? ((Currency)currency).getCurrencyCode() : null;
+	    return currency != null ? ((Currency) currency).getCurrencyCode() : null;
 	} catch (ClassCastException e) {
 	    throw new ConverterException(Currency.class.getName() + " expected");
 	}
